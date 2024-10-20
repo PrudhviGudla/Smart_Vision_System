@@ -2,14 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Florence2 Video Stream</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Smart Vision System</title>
+    <link rel="stylesheet" href="static\main.css">
+    <script>
+        // Function to fetch model output periodically
+        async function fetchModelOutput() {
+            try {
+                const response = await fetch('/get_result');
+                const data = await response.json();
+                const outputContent = document.getElementById('output-content');
+                outputContent.innerHTML = ''; // Clear previous content
+                const p = document.createElement('p');
+                p.innerHTML = `<strong>Model Output:</strong> ${data.result}`;
+                outputContent.appendChild(p);
+            } catch (error) {
+                console.error('Error fetching model output:', error);
+            }
+        }
+
+        // Fetch model output every 2 seconds
+        setInterval(fetchModelOutput, 2000);
+    </script>
 </head>
 <body>
     <div class="container">
-        <h1>Real-Time Video Stream with Florence2 Model Output</h1>
-        <div class="video-container">
-            <img src="/video_feed" id="video-feed">
+        <h1>Smart Vision System</h1>
+        <div class="cards-container">
+            <div class="video-card">
+                <h2>Video Feed</h2>
+                <div class="video-container">
+                    <img src="/video_feed" id="video-feed" alt="Video Feed">
+                </div>
+            </div>
+            <div class="output-card">
+                <h2>Model Output</h2>
+                <div class="output-content" id="output-content">
+                    <!-- Model output will be displayed here -->
+                </div>
+            </div>
         </div>
     </div>
 </body>
