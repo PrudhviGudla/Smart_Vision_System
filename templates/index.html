@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Smart Vision System</title>
-    <link rel="stylesheet" href="static\main.css">
+    <title>Smart Vision System for Quality Control</title>
+    <link rel="stylesheet" href="static/main.css">
     <script>
-        // Function to fetch model output periodically
         async function fetchModelOutput() {
             try {
                 const response = await fetch('/get_result');
@@ -20,19 +19,39 @@
             }
         }
 
-        // Fetch model output every 2 seconds
-        setInterval(fetchModelOutput, 2000);
+        async function processFrame() {
+            try {
+                document.getElementById('process-button').disabled = true;
+                const response = await fetch('/process_frame', {
+                    method: 'POST'
+                });
+                const data = await response.json();
+                const outputContent = document.getElementById('output-content');
+                outputContent.innerHTML = ''; // Clear previous content
+                const p = document.createElement('p');
+                p.innerHTML = `<strong>Model Output:</strong> ${data.result}`;
+                outputContent.appendChild(p);
+                document.getElementById('process-button').disabled = false;
+            } catch (error) {
+                console.error('Error processing frame:', error);
+                document.getElementById('process-button').disabled = false;
+            }
+        }
     </script>
 </head>
 <body>
     <div class="container">
-        <h1>Smart Vision System</h1>
+        <h1>
+            <img src=r"C:\Users\Prudhvi\Documents\Smart_Vision_System_FG\site_img\logo1.png" alt="Logo"> <!-- Logo beside the title -->
+            Smart Vision System for Quality Control
+        </h1>
         <div class="cards-container">
             <div class="video-card">
                 <h2>Video Feed</h2>
                 <div class="video-container">
                     <img src="/video_feed" id="video-feed" alt="Video Feed">
                 </div>
+                <button id="process-button" onclick="processFrame()">Process Frame</button>
             </div>
             <div class="output-card">
                 <h2>Model Output</h2>

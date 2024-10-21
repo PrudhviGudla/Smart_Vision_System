@@ -1,7 +1,11 @@
-body {
+body { 
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #1a1a1a; /* Dark background for smart vision system */
+    background-color: #1a1a1a;
+    background-image: "site_img/bg1.png"; /* Add background image */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Keep it fixed during scroll */
 }
 
 .container {
@@ -11,39 +15,48 @@ body {
 
 h1 {
     color: #e0e0e0; /* Light text on dark background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between logo and text */
+}
+
+h1 img {
+    height: 50px; /* Adjust logo size */
+    vertical-align: middle;
 }
 
 .cards-container {
-    display: flex; /* Arrange cards side by side */
-    justify-content: center; /* Center the cards */
+    display: flex;
+    justify-content: center;
     margin-top: 20px;
 }
 
 .video-card, .output-card {
-    background-color: #2c2c2c; /* Darker background for cards */
-    border: 1px solid #444; /* Dark border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 255, 0, 0.2); /* Greenish shadow */
-    padding: 20px; /* Padding inside the card */
-    margin: 10px; /* Margin between cards */
-    color: #e0e0e0; /* Light text */
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 255, 0, 0.2);
+    padding: 20px;
+    margin: 10px;
+    color: #e0e0e0;
 }
 
 .video-card {
-    width: 680px; /* Fixed width for video card */
+    width: 680px;
 }
 
 .output-card {
-    width: 300px; /* Adjust width for output card */
+    width: 300px;
 }
 
 .video-container {
     display: inline-block;
     margin-top: 20px;
-    border: 2px solid #00ff00; /* Bright green border to mimic smart vision system */
+    border: 2px solid #00ff00;
     width: 640px;
     height: 480px;
-    overflow: hidden; /* Hide any overflow */
+    overflow: hidden;
 }
 
 #video-feed {
@@ -52,12 +65,14 @@ h1 {
 }
 
 .output-content {
-    text-align: left; /* Align text to the left */
+    text-align: left;
     margin-top: 20px;
+    max-height: 460px;
+    overflow-y: auto;
 }
 
 .output-content p {
-    color: #e0e0e0; /* Light text */
+    color: #e0e0e0;
     font-size: 16px;
     line-height: 1.5;
 }
@@ -65,13 +80,7 @@ h1 {
 h2 {
     border-bottom: 1px solid #444;
     padding-bottom: 10px;
-    color: #00ff00; /* Bright green headings */
-}
-
-/* Scrollbar styling for output content */
-.output-content {
-    max-height: 460px;
-    overflow-y: auto;
+    color: #00ff00;
 }
 
 .output-content::-webkit-scrollbar {
@@ -85,4 +94,20 @@ h2 {
 .output-content::-webkit-scrollbar-thumb {
     background-color: #444;
     border-radius: 4px;
+}
+
+#process-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #00ff00;
+    border: none;
+    border-radius: 5px;
+    color: #1a1a1a;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#process-button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
 }
