@@ -1,2 +1,2 @@
-# Smart_Vision_System_FG
+# Smart_Vision_System
 Will be updated soon!
